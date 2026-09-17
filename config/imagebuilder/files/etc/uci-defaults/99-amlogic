@@ -2,7 +2,7 @@
 
 # Change to MyWRT upstream in every update
 
-uci -q set amlogic.config.amlogic_firmware_repo='https://github.com/etnperlong/amlogic-s9xxx-openwrt'
+uci -q set amlogic.config.amlogic_firmware_repo='https://github.com/MyWRT/amlogic-s9xxx-openwrt'
 uci -q commit amlogic
 
 exit 0
