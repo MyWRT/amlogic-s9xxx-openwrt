@@ -275,7 +275,7 @@ on:
       openwrt_kernel:
         description: "Select kernel version"
         required: false
-        default: "6.12.y_6.18.y"
+        default: "6.18.y"
         type: choice
         options:
           - 5.10.y
@@ -297,9 +297,10 @@ on:
       kernel_repo:
         description: "Set the kernel repository"
         required: false
-        default: "ophub/kernel"
+        default: "MyWRT/kernel"
         type: choice
         options:
+          - MyWRT/kernel
           - ophub/kernel
       kernel_usage:
         description: "Set the tags of the stable kernel."
