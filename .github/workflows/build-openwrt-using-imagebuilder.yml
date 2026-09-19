@@ -297,10 +297,10 @@ on:
       kernel_repo:
         description: "Set the kernel repository"
         required: false
-        default: "MyWRT/kernel"
+        default: "MyWRT/amlogic-s9xxx-kernel"
         type: choice
         options:
-          - MyWRT/kernel
+          - MyWRT/amlogic-s9xxx-kernel
           - ophub/kernel
       kernel_usage:
         description: "Set the tags of the stable kernel."
