@@ -400,9 +400,24 @@ custom_settings() {
                 echo "DISTRIB_SOURCECODE='${op_sourse}'"
                 echo "DISTRIB_SOURCEBRANCH='${op_branch}'"
             } >>"${release_file}"
+
+            # Rebrand only the leading distro name, keeping the upstream version
+            # and revision suffix. DISTRIB_ID is deliberately left alone: the apk
+            # feed URLs and luci-app-amlogic key off it.
+            sed -i "s|^DISTRIB_DESCRIPTION='[^ ']*|DISTRIB_DESCRIPTION='MyWRT|" "${release_file}"
         else
             error_msg "${release_file} not found."
         fi
+
+        # Append firmware source information to the terminal banner, the same way
+        # [ remake ] does at packaging time. That later step adds the board, kernel
+        # and production date lines plus the closing separator, so this one only
+        # contributes the source line and deliberately ends the block open.
+        banner_file="${unpack_path}/etc/banner"
+        [[ -f "${banner_file}" ]] && {
+            echo -e "${INFO} Updating etc/banner..."
+            echo " Firmware Source: ${op_sourse} ${op_branch} | Build Date: $(date +%Y-%m-%d)" >>"${banner_file}"
+        }
 
         remove_native_luci_flash "${unpack_path}"
 
